@@ -1,5 +1,6 @@
 package com.karsauyeung.onlineshop.rowmapper;
 
+import com.karsauyeung.onlineshop.constant.ProductCategory;
 import com.karsauyeung.onlineshop.model.Product;
 import org.jspecify.annotations.Nullable;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,7 +14,8 @@ public class ProductRowMapper implements RowMapper {
         Product product = new Product() ;
         product.setProductId(rs.getInt("product_id")) ;
         product.setProductName(rs.getString("product_name"));
-        product.setCategory(rs.getString("category"));
+        String category = rs.getString("category") ;
+        product.setCategory(ProductCategory.valueOf(category));
         product.setImageUrl(rs.getString("image_url"));
         product.setPrice(rs.getInt("price"));
         product.setStock(rs.getInt("stock"));
